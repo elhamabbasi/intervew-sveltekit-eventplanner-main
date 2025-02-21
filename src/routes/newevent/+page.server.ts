@@ -11,7 +11,7 @@ export const actions: Actions = {
         if (!title || !date) {
             error(400, 'Title and Date are required');
         }
-        const newEvent = await createEvent({title, description, date});
-        redirect(303, `/${newEvent.id}`);
+        await createEvent({title, description, date});
+        redirect(303, `/`);
     }
 }

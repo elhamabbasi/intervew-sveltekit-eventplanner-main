@@ -1,7 +1,6 @@
 import { fetchEventById, updateEventById  } from "$lib/server/remote-events";
 import { redirect } from "@sveltejs/kit";
 import type { Actions, PageServerLoad } from "./$types";
-import { goto } from "$app/navigation";
 
 export const load: PageServerLoad = async ({params}) => {
     const eventId = parseInt(params.eventId);
@@ -27,14 +26,7 @@ export const actions: Actions = {
             return { success: false, message: "All fields are required" };
         }
 
-        try {
-            await updateEventById(id, {  title, description, date });
-            return { success: true, message: "Event updated successfully!" };
-
-            
-        } catch (error) {
-            console.error("Error updating event:", error);
-            return { success: false, message: "Failed to update event." };
-        }
+        await updateEventById(id, {  title, description, date });
+        redirect(303, `/`);
     }
 };
