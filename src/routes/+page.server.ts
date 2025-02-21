@@ -2,10 +2,12 @@ import { deleteEventById, fetchAllEvents } from '$lib/server/remote-events';
 import {  error } from '@sveltejs/kit';
 import type { Actions, PageServerLoad } from './$types';
 
+
 export const load: PageServerLoad = async () => {
+    // Start fetching events but don't block the response
     return {
-        events: fetchAllEvents()
-    }
+        events: fetchAllEvents() // This is still a Promise and won't block page rendering
+    };
 };
 
 export const actions: Actions = {
