@@ -39,7 +39,6 @@ export function fetchEventById(id: number): Promise<Event | undefined> {
  * Add a new event (simulates a remote creation).
  */
 export function createEvent(event: Omit<Event, 'id'>): Promise<Event> {
-    console.log('salam');
     const events = eventStorage.read();
 
     // Generate a new ID (simple increment based on the max existing ID)
@@ -55,7 +54,6 @@ export function createEvent(event: Omit<Event, 'id'>): Promise<Event> {
  * Update an existing event by ID (simulates a remote update).
  */
 export function updateEventById(id: number, updatedEvent: Partial<Omit<Event, 'id'>>): Promise<Event | null> {
-    console.log('salam');
     const events = eventStorage.read();
     const index = events.findIndex(event => event.id === id);
 

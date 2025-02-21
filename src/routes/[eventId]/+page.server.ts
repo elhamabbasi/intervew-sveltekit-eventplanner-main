@@ -13,16 +13,13 @@ export const load: PageServerLoad = async ({params}) => {
 
 export const actions: Actions = {
     update: async ({ request }) => {
-        console.log("Updating event");
         const formData = await request.formData();
-        
         const id = parseInt(formData.get("id") as string);
         const title = formData.get("title") as string;
         const description = formData.get("description") as string;
         const date = formData.get("date") as string;
 
         if (!id || !title || !description || !date) {
-            console.log("Validation failed:", { id, title, description, date });
             return { success: false, message: "All fields are required" };
         }
 

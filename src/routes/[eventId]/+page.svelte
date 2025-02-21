@@ -1,21 +1,21 @@
 <script lang="ts">
+	import { enhance } from "$app/forms";
 	import { goto } from "$app/navigation";
 	import type { PageData } from "./$types";
-    
+
     let { data }: { data: PageData } = $props();
-    let isEditing = true;
 
     function handleCancel() {
         goto('/');
     }
+
 </script>
 
 <div class=" flex items-center justify-center ">
     <div class="w-full max-w-md bg-white p-6 rounded-lg shadow-lg">
         <h2 class="text-2xl font-semibold text-alaska-blue mb-4">Edit Event</h2>
 
-        <form method="post" action="?/update">
-            <!-- Hidden ID Field -->
+        <form method="post" action="?/update" use:enhance>
             <input type="hidden" id="id" name="id" value={data.event?.id}>
 
             <!-- Title -->
@@ -26,7 +26,7 @@
                     name="title" 
                     type="text" 
                     value={data.event?.title} 
-                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-alaska-on-light focus:border-transparent"
+                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-transparent"
                 >
             </div>
 
@@ -36,7 +36,7 @@
                 <textarea 
                     id="description" 
                     name="description"
-                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-alaska-on-light focus:border-transparent resize-none"
+                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none  focus:border-transparent resize-none"
                 >{data.event?.description}</textarea>
             </div>
 
@@ -48,7 +48,7 @@
                     name="date" 
                     type="datetime-local" 
                     value={data.event?.date} 
-                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-alaska-on-light focus:border-transparent"
+                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-transparent"
                 >
             </div>
 

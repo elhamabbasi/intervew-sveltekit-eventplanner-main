@@ -2,8 +2,8 @@
 	import type { PageData } from './$types';
 	import { goto } from '$app/navigation';
 	import { onMount } from 'svelte';
-	import { writable,  } from 'svelte/store';
-	import { enhance } from '$app/forms';
+	import { writable  } from 'svelte/store';
+
 
 	let { data }: { data: PageData } = $props();
 	let dialog: HTMLDialogElement ; // Reference to the dialog tag
@@ -15,7 +15,6 @@
 	})
 
 	function navigateToEvent(eventId: number) {
-		console.log('Navigating to event:', eventId); // Debugging
 		goto(`/${eventId}`);
 	}
 

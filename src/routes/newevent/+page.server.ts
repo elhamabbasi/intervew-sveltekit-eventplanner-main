@@ -11,7 +11,14 @@ export const actions: Actions = {
         if (!title || !date) {
             error(400, 'Title and Date are required');
         }
+
+        const selectedDate = new Date(date);
+        const now = new Date();
+        if (selectedDate < now) {
+            return { type: "error", message: "The event date cannot be in the past.", title, description, date };
+        }
         await createEvent({title, description, date});
         redirect(303, `/`);
+
     }
 }
